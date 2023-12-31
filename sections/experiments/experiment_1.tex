@@ -1,0 +1,21 @@
+
+\subsection{Audio (GPT-4 only): Prompting affects the transcribed word error rate.}
+
+\begin{itemize}
+    \item Prompt Engineering Type Tested: Context?
+    \item What are the 'ground-truth' values: Human-Validated Audio Transcriptions.
+    \item Evaluation Metric: Word Error Rate.
+\end{itemize}
+
+The two experimental conditions will use standardised settings to transcribe the scenario. As a baseline, no textual prompt will be supplied to the whisper model, and in another experimental condition, a textual prompt will be provided with the scenario data. The textual prompt for the whisper API will consist of any neologistic food items from the menu (i.e., food menu items that have been created for this scenario, such as "Mambo Combo" or "ShefBurger"). 
+
+The prompt will be formed from the frequency of food entity neologisms within the overall transcript corpora. They will be ordered from lowest to highest, with the lowest frequency neologisms up to the token limit of 224 being provided as the prompt to all transcriptions in this experimental condition. An illustrative example is provided in Figure \ref{fig: Example Menu Prompting}.
+
+These conditions will then be compared to human-validated ground-truth transcripts of the audio scenarios, with a word error rate used to measure either approach's effectiveness.
+
+This approach determines if model performance can be improved by selecting this prompt list without retraining the entire model. The potential benefit of this approach is that energy consumption could be reduced using prompt engineering to tailor the model to different menu items in restaurants. 
+
+Notably, as of writing, Gemini API does not enable audio transcriptions, and as such experiment 1 cannot be performed on that architecture.
+
+\input{sections/figures/example_menu_prompt}
+\input{sections/tables/experiment_1}

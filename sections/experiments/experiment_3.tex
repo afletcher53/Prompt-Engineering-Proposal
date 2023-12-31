@@ -1,0 +1,14 @@
+
+\subsection{Text (GPT-4 \& Gemini): Generating finalised orders from human-validated transcripts.}
+
+\begin{itemize}
+    \item Prompt Engineering Type Tested: Role Prompting.
+    \item What are the 'ground truth' values: Human-Validated Finalised Orders.
+    \item Evaluation Metric: Word Error Rate.
+\end{itemize}
+
+The two experiential conditions for this will use standardised settings to translate the scenario into finalised orders. The transcript of the text will be prepended with "Generate a finalised order for the following transcript: TRANSCRIPT." Both models will be compared with the finalised, human-verified gold orders generated through data generation. 
+
+It should be noted that the LLM output may not precisely replicate the desired outcome. The output of the generated text will be standardised into a table containing the quantity and the item ordered that matches the expected menu structure to enable comparison. Then, they will be ordered alphabetically by the item name. 
+
+The word error rate could then be calculated from the gold standard formatted lists on the gold standard. 

@@ -1,0 +1,11 @@
+At its core, this project aims to use audio data to represent ordered items accurately. The experimental design generates three forms of data: the scenario audio, a human-validated transcribed representation of the scenario, and the finalised ordered items.
+
+Prompt engineering can occur any time data are being passed to a model. Audio prompting is enabled by using OpenAI's whisper model's API, which allows textual information to be supplied to the model to improve its performance. Notably, only 224 tokens can be provided to the model, with any preceding tokens ignored. Textual prompt engineering can be achieved by modifying the textual input through prepending, extending, or modifying the input.  
+
+
+Due to API limitations, the audio files were pre-processed into 25 MB or smaller files and fed into the transcription API. These transcriptions can be concatenated to form a larger transcription.
+
+\subsubsection{Inclusion/Exclusion Critera}
+Data will be split into a test/train/validation structure (80/10/10) with a predetermined seed set to improve reproducibility. All calls to the API will follow the same parameters, as shown in Table \ref{tab:standard_params}.
+
+In cases where the textual prompts exceed the token limits of one of the tested models, that data will be removed from that experiment.

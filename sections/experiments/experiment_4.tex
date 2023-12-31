@@ -1,0 +1,14 @@
+
+\subsection{Text (GPT-4 \& Gemini): Context effect on WER.}
+
+\begin{itemize}
+    \item Prompt engineering type tested: one-/few-shot prompting + role play.
+    \item What are the 'ground truth' values: Human-Validated Finalised Orders.
+    \item Evaluation Metric: Word Error Rate.
+\end{itemize}
+
+The two experimental conditions for this will use the standardised settings to transcribe the scenario; however, each model request (GPT-4 and Gemini's) will be prepended with text to provide context to the LLM about the data that will be received. This text will be "The following text contains an order from a restaurant drive-through order. Generate a finalised order for the following transcript: TRANSCRIPT.  
+
+It should be noted that the LLM output may not precisely replicate the desired outcome. The output of the generated text will be standardised into a table containing the quantity and the item ordered that matches the expected menu structure to enable comparison. Then, they will be ordered alphabetically by the item name. 
+
+The word error rate could then be calculated from the gold standard formatted lists on the gold standard. 

@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{enumitem}
+\newenvironment{QandA}{\begin{enumerate}[label=\bfseries\alph*.]\bfseries}
+                      {\end{enumerate}}
+\newenvironment{answered}{\par\normalfont}{}
+\usepackage{lipsum}
+\pagestyle{empty}
+\begin{document}
+\noindent%
+
+\begin{QandA}
+   \item In computer science, what is priority inversion?
+         \begin{answered}
+         Priority inversion in computer science, particularly in the context of operating systems and real-time computing, is a scenario where a lower-priority task holds a resource that is needed by a higher-priority task. This situation leads to an inversion of the intended priority-based scheduling, as the higher-priority task is forced to wait for the lower-priority task to release the resource. Here's a detailed explanation:
+
+What is Priority Inversion?
+Basic Concept: In systems where tasks have different priorities, priority inversion occurs when a higher-priority task is preempted by a lower-priority task due to resource contention.
+
+Example Scenario:
+
+High-Priority Task (HPT): Needs to execute critical operations and has higher priority.
+Low-Priority Task (LPT): Performs non-critical operations and has lower priority.
+Shared Resource: Both tasks need access to a shared resource (like a mutex or a semaphore).
+Occurrence:
+
+The LPT acquires the shared resource.
+The HPT, which needs the same resource, is ready to run and attempts to acquire it.
+The HPT cannot proceed because the LPT holds the resource. Despite having a higher priority, the HPT must wait.
+Complication: If there's an intermediate-priority task, it can preempt the LPT (since it has a higher priority than LPT), exacerbating the delay for the HPT.
+
+Why is it a Problem?
+Performance Impact: It can significantly degrade the performance of high-priority tasks, leading to inefficiencies in system operation.
+Real-Time Systems: In real-time systems, this can result in missed deadlines, which can be critical in applications like medical systems, aerospace, and industrial control.
+Solutions to Priority Inversion:
+Priority Inheritance Protocol (PIP): When a HPT is waiting for a resource held by a LPT, the LPT temporarily inherits the priority of the HPT. This reduces the chance of being preempted by intermediate-priority tasks.
+
+Priority Ceiling Protocol (PCP): Each resource is assigned a priority ceiling, which is the highest priority of any task that may lock it. A task can lock a resource only if its priority is higher than the priority ceilings of all currently locked resources.
+
+Other Techniques: Include using non-blocking algorithms or designing systems where priority inversion is less likely to occur.
+
+Importance in Computing:
+Priority inversion is a critical issue in systems where timing and task prioritization are essential, such as in embedded systems, real-time operating systems, and critical infrastructure management. Managing and mitigating priority inversion is crucial for ensuring the reliability and predictability of these systems.
+         \end{answered}
+
+   \item Respond in a way that a 5-year-old would understand: In computer science, explain what priority inversion is.
+         \begin{answered}
+         Alright, imagine you are at a playground and there's a really cool slide. Now, think of three kids who want to use the slide: a big kid, a medium kid, and a little kid.
+
+The big kid is like a super-important task in a computer. He's supposed to go down the slide first because he's the most important.
+The little kid is like a not-so-important task. He usually waits his turn.
+The medium kid is in the middle; he's kind of important, but not as much as the big kid.
+One day, the little kid gets to the slide first and starts playing on it. The big kid comes and wants to slide, but he can't because the little kid is in the way. He has to wait, even though he's more important. This is weird, right? Because usually, the big kid would go first.
+
+Then, while the big kid is waiting, the medium kid comes and starts playing with the little kid, making the big kid wait even longer. This is really unfair for the big kid because he's supposed to go first!
+
+In computers, when a super-important job (like the big kid) has to wait for a less important job (like the little kid) because they both need the same thing (like the slide), it's called "priority inversion." It's like the rules of who goes first getting mixed up. Computers have special ways to fix this, just like how a teacher might step in to help the kids take turns fairly on the slide.
+         \end{answered}
+\end{QandA}
+
+\end{document}

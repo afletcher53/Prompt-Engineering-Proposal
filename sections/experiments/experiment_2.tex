@@ -1,0 +1,15 @@
+\newpage
+\subsection{Audio (GPT-4 only): The textual prompt for longer-term dependencies reduces WER}
+
+\begin{itemize}
+    \item Prompt Engineering Type Tested: One-/Few-shot Prompting.
+    \item What are the 'ground truth' values: Human-Validated Transcriptions.
+    \item Evaluation Metric: Word Error Rate.
+\end{itemize}
+Due to the API limitations, which allow only 25 MB or smaller files, the previous longer-term contextual dependencies are lost. 
+
+
+
+Prompting with the conversation's previous transcription will hopefully improve the word error rate. 
+
+\input{sections/tables/experiment_2}
