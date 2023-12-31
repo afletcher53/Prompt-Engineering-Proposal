@@ -4,7 +4,7 @@
 \begin{itemize}
     \item Prompt engineering type tested: one-/few-shot prompting + role play.
     \item What are the 'ground truth' values: Human-Validated Finalised Orders.
-    \item Evaluation Metric: Word Error Rate.
+    \item Evaluation Metric: Accuracy/F1 + Confusion Matrix.
 \end{itemize}
 
 The two experimental conditions for this will use the standardised settings to transcribe the scenario; however, each model request (GPT-4 and Gemini's) will be prepended with text to provide context to the LLM about the data that will be received. This text will be "The following text contains an order from a restaurant drive-through order. Generate a finalised order for the following transcript: TRANSCRIPT.  
