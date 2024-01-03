@@ -2,9 +2,23 @@
 
 % discussed about metrics
 
+This section will discuss the evaluation metrics proposed to compare the approaches. A metric for ASR will be discussed, followed by two metrics related to order building.
+
 \subsection{Transcription}
 
 % WER (a standard approach)
+
+In the ASR experiments, the goal of our performance metric is to evaluate the quality of the transcription at the token level. As the model evaluated in our experiment takes words as tokens, word accuracy (WAcc) is used to measure performance, which is the complement of word error rate (WER). WAcc is described as:
+\begin{eqnarray}
+    \textnormal{WAcc} = 1 - \textnormal{WER}
+\end{eqnarray}
+with
+\begin{eqnarray}
+    \textnormal{WER} = \frac{S+D+I}{N} \\
+    N = S+D+C
+\end{eqnarray}
+where \(S\) is the number of substitutions, \(D\) is the number of deletions, \(I\) is the number of insertions, \(C\) is the number of correct words and \(N\) is the number of words in the reference.
+
 
 \subsection{Finalised Order}
 
@@ -12,11 +26,19 @@
 % metrics for labeling task can be adapted: F-scores, confusion matrix
 % ref: "A review on multi-label learning algorithms (ML Zhang, 2013)" Section 2.2
 
+The finalised order can be formalised as a nested list of options, where some can have a multiplier. Therefore, the structure can vary greatly between different orders, making the evaluation challenging. To simplify the problem, the finalised order is converted into a labelling problem instead of directly evaluating the order structure. This way, common metrics for labelling tasks, i.e. F-scores, Confusion Matrix, Precision, and Recall, can be adapted to evaluate the finalised order. % TODO: ref nested list of options
+
+One of the approaches to converting order lists to labels is to make each label represent a unique combination of option properties. However, the set of labels multiplies with an extensive menu option, which leads to sparse label space and makes the analysis much more difficult. To mitigate this issue, in our experiment, the labels are created in multiple dimensions separately, where the dimensions are options, multiplier, and nesting level. Each of the three sets of labels can be independently evaluated. % TODO: ref options, multiplier, level of nesting
+
 \subsection{Action Flow}
 
 % Match actions over time: e.g. add, remove items
-% Sequence dependent metric
-% evaluate: can it peoduce the correct sequence of actions?
-% evaluate: can it peoduce a good time alignment for each of the actions?
+% sequence dependent metric
+% evaluate: can it produce the correct sequence of actions?
+% evaluate: can it produce a good time alignment for each of the actions?
 %   metrics for force alignment tasks can be adapted: mean displacement
 %   "Assessing the accuracy of existing forced alignment software on varieties of British English"
+
+The problem with evaluating the finalised order is that it is a sequence-independent metric, and the process of building the finalised order cannot be analysed. To mitigate this problem, a metric has been designed that evaluates action flow. The goal of this metric is to assess whether or not the correct sequence of actions can be captured and to evaluate the quality of action-to-transcription alignment. % TODO: ref examples of actions
+
+This category of metrics requires the model to produce a formalised sequence of actions with reasons from the transcription, where reasons are action-related parts of the transcription. WAcc has been adapted to evaluate the action sequence's correctness, where the algorithm works on actions instead of words. To evaluate the alignment between action and transcription, a forced alignment metric has been adapted that computes the mean displacement of words from predicted to real reason.

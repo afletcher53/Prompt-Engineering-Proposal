@@ -6,6 +6,8 @@ Prompt engineering can occur any time data are being passed to a model. Audio pr
 Due to API limitations, the audio files were pre-processed into 25 MB or smaller files and fed into the transcription API. These transcriptions can be concatenated to form a larger transcription.
 
 \subsubsection{Inclusion/Exclusion Critera}
-Data will be split into a test/train/validation structure (80/10/10) with a predetermined seed set to improve reproducibility. All calls to the API will follow the same parameters, as shown in Table \ref{tab:standard_params}.
+All calls to the API will follow the same parameters, as shown in Table \ref{tab:standard_params}.
 
 In cases where the textual prompts exceed the token limits of one of the tested models, that data will be removed from that experiment.
+
+\input{sections/tables/standard_model_parameters}
